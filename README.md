@@ -2,17 +2,22 @@ Setup
 -----
 
 Install RVM
-  see https://rvm.beginrescueend.com/rvm/install/
+
+    see https://rvm.beginrescueend.com/rvm/install/
 
 Install Ruby 1.9.3
+
     rvm install ruby-1.9.3-p125
 
 Install memcached
-  Using brew
-  $ brew install memcached
 
-  Using Mac Port
-  $ sudo port install memcached
+    Using brew
+
+    $ brew install memcached
+
+    Using Mac Port
+
+    $ sudo port install memcached
 
 Install MySql
   $ brew install mysql
@@ -27,8 +32,8 @@ Install mysql database
 
  Login to mysql with admin account then run sqls
 
-create database api_account;
-use api_account;
+    create database api_account;
+    use api_account;
 
 CREATE USER 'auth-service'@'localhost' IDENTIFIED BY 'auth-service-password';
 GRANT ALL PRIVILEGES ON *.* TO 'auth-service'@'localhost' WITH GRANT OPTION;
