@@ -1,0 +1,5 @@
+*.class
+target/*
+*.i*
+*.lock
+.gitconfig
