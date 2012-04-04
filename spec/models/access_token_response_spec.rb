@@ -1,6 +1,4 @@
-require 'minitest/autorun'
-require_relative '../test_helper'
-require_relative '../../models/access_token_response'
+require File.expand_path(File.join(File.dirname(__FILE__), "..", 'spec_helper'))
 
 describe AccessTokenResponse do
   before do
@@ -14,6 +12,6 @@ describe AccessTokenResponse do
     @response.token = "some token"
     @response.scope = " some scope"
     expected_json = "{\"expires_time\":\"#{now}\",\"client_id\":\"client it\",\"token\":\"some token\",\"scope\":\" some scope\"}"
-    assert_equal expected_json, @response.to_json
+    @response.to_json.should == expected_json
   end
 end

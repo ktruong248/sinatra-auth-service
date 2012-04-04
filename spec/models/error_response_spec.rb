@@ -1,6 +1,4 @@
-require 'minitest/autorun'
-require_relative '../test_helper'
-require_relative '../../models/error_response'
+require File.expand_path(File.join(File.dirname(__FILE__), "..", 'spec_helper'))
 
 describe ErrorResponse do
   before do
@@ -9,6 +7,6 @@ describe ErrorResponse do
 
   it "should serialize to json string" do
     expected_json = "{\"error_code\":111,\"description\":\"some error description\"}"
-    assert_equal expected_json, @response.to_json
+    @response.to_json.should == expected_json
   end
 end
