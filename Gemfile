@@ -6,7 +6,7 @@ gem "sinatra-jsonp", :require => 'sinatra/jsonp'
 gem "data_mapper"
 gem "dm-mysql-adapter"
 gem "memcache-client"
-gem "rspec"
+
 
 group :development do
   gem "awesome_print"
@@ -16,6 +16,7 @@ group :development do
 end
 
 group :test do
+  gem "rspec", "2.7.0"
   gem "rack-test"
 end
 

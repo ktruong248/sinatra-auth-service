@@ -5,28 +5,22 @@ class MyApp < Sinatra::Base
     content_type :json
   end
 
-  #
-  # todo cleanup
-  # think about scope hashed ??
-  # should we use scope for "request authorize url"
   get '/auth/v1/access_token' do
     client_id = params[:client_id]
     client_secret = params[:client_secret]
     scope = params[:scope]
 
     if Account.authorized(client_id, client_secret)
-      token = SecureRandom.hex
       # to do add configuration
       expires_second = 120
-      @access_token_response = AccessTokenResponse.new
-      @access_token_response.client_id = client_id
-      @access_token_response.scope = scope
-      @access_token_response.token = token
-      @access_token_response.expires_time = Time.now + expires_second
-      @@memcache_client.add(token, @access_token_response, expires_second)
-    end
+      @access_token_response = AccessTokenResponseGenerator.generate(client_id, scope, expires_second)
+      @@memcache_client.add(@access_token_response.token, @access_token_response, expires_second)
 
-    JSONP @access_token_response
+      JSONP @access_token_response
+    else
+      status 400
+      JSON ErrorResponse.new(102, "invalid credentials")
+    end
   end
 
   #
@@ -48,6 +42,6 @@ class MyApp < Sinatra::Base
     else
       JSONP value
     end
-
   end
+
 end

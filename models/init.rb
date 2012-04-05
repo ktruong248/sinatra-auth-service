@@ -1,6 +1,7 @@
 require_relative 'account'
 require_relative 'access_token_response'
 require_relative 'error_response'
+require_relative 'access_token_response_generator'
 
 require 'memcache'
 require 'rubygems'
